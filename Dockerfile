@@ -18,3 +18,9 @@ COPY start.sh start.sh
 
 # make the script executable
 RUN chmod +x start.sh
+
+# since the config and run script for actions are not allowed to be run by root,
+# set the user to "docker" so all subsequent commands are run as the docker user
+USER docker
+
+ENTRYPOINT ["./start.sh"]
