@@ -1,6 +1,8 @@
 FROM ubuntu:20.04
 
 ARG RUNNER_VERSION="2.294.0"
+
+# Prevents installdependencies.sh from prompting the user and blocking the image creation
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m docker
@@ -18,3 +20,9 @@ COPY start.sh start.sh
 
 # make the script executable
 RUN chmod +x start.sh
+
+# since the config and run script for actions are not allowed to be run by root,
+# set the user to "docker" so all subsequent commands are run as the docker user
+USER docker
+
+ENTRYPOINT ["./start.sh"]
