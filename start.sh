@@ -1,16 +1,16 @@
 #!/bin/bash
 
-REPO=$REPO
+REPOSITORY=$REPO
 ACCESS_TOKEN=$TOKEN
 
-echo "REPO ${REPO}"
-echo "ACCESS_TOKEN ${TOKEN}"
+echo "REPO ${REPOSITORY}"
+echo "ACCESS_TOKEN ${ACCESS_TOKEN}"
 
-REG_TOKEN=$(curl -X POST -H "Authorization: token ${ACCESS_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${REPO}/actions/runners/registration-token | jq .token --raw-output)
+REG_TOKEN=$(curl -X POST -H "Authorization: token ${ACCESS_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
 
 cd /home/docker/actions-runner
 
-./config.sh --url https://github.com/${REPO} --token ${REG_TOKEN}
+./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN}
 
 cleanup() {
     echo "Removing runner..."
