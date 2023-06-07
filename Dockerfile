@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 ARG RUNNER_VERSION="2.294.0"
 
-# Prevents installdependencies.sh from prompting the user and blocking the image creation vivek
+# Prevents installdependenciesvbnbvcbnbvbnbvb.sh from prompting the user and blocking the image creation vivek
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m docker
