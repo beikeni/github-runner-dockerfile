@@ -1,4 +1,4 @@
-name: Django CI
+name: chandu CI
 
 on:
   push:
