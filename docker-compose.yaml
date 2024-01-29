@@ -24,7 +24,7 @@ version: '3.7'
 
 services:
   runner:
-    image: chago19911/github-runner:1.0v
+    image: chago19911/github-runner:1.2v
     restart: always
     environment:
       - REPO=https://github.com/satu-com-ge
