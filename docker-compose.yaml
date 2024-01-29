@@ -1,0 +1,41 @@
+#version: '2'
+
+#services:
+#  runner:
+#    image: chago19911/github-runner:1.0v
+#    restart: always
+#    environment:
+#      - REPO=https://github.com/satu-com-ge
+#      - TOKEN=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
+#    deploy:
+#      mode: replicated
+#    deploy:
+#      mode: replicated
+#      replicas: 4
+#    resources:
+#      limits:
+#        cpus: '0.35'
+#        memory: 300M
+#      reservations:
+#        cpus: '0.25'
+#        memory: 128M
+
+version: '3.7'
+
+services:
+  runner:
+    image: chago19911/github-runner:1.0v
+    restart: always
+    environment:
+      - REPO=https://github.com/satu-com-ge
+      - TOKEN=ASBJVWVUQOYED6BLDANNOGDFW3MRM                   ###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
+    deploy:
+      mode: replicated
+      replicas: 4
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: 300M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
