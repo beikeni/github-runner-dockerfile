@@ -28,7 +28,7 @@ services:
     restart: always
     environment:
       - REPO=https://github.com/satu-com-ge
-      - TOKEN=ASBJVWVUQOYED6BLDANNOGDFW3MRM                   ###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
+      - TOKEN=$TOKEN                   ###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
     deploy:
       mode: replicated
       replicas: 4
