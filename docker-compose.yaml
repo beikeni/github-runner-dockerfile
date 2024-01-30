@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   runner:
-    image: chago19911/github-runner:latest
+    image: chago19911/github-runner:v1.00
     restart: always
     environment:
       - REPO=https://github.com/satu-com-ge
       - TOKEN=$TOKEN
     deploy:
       mode: replicated
-      replicas: 4
+      replicas: 1
       resources:
         limits:
           cpus: '0.35'
