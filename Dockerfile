@@ -39,8 +39,9 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 
 COPY start.sh start.sh
-
+COPY cleanup.sh cleanup.sh
 # make the script executable
+RUN chmod +x cleanup.sh
 RUN chmod +x start.sh
 
 # since the config and run script for actions are not allowed to be run by root,
