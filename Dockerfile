@@ -1,10 +1,32 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG RUNNER_VERSION="2.312.0"
 
 # Prevents installdependencies.sh from prompting the user and blocking the image creation
 ARG DEBIAN_FRONTEND=noninteractive
+ARG DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
+# Install necessary tools
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    unzip \
+    zip \
+    lsb-release
+
+
+# Add HashiCorp GPG key and repository
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+
+# Install Terraform
+RUN apt-get update && apt-get install -y terraform
+
+
+RUN apt-get update && \
+    apt-get install -y libicu-dev
 RUN apt update -y && apt upgrade -y && useradd -m docker
 RUN apt install -y --no-install-recommends \
     curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
